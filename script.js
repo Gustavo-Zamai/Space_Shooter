@@ -4,6 +4,7 @@ const aliensImg = ['image/bad1.png', 'image/bad2.png', 'image/bad3.png', 'image/
 const instructionsText = document.querySelector('.game-instructions');
 const startButton = document.querySelector('.start-button');
 let alienInterval;
+let score = 0;
 
 //MOVE AND SHOOT
 function flyShip(event) {
@@ -49,16 +50,16 @@ function moveDown() {
         ship.style.top = `${position}px`;
     }
 }
-/*
+
 //go RIGHT
 function moveRight() {
-    let leftPosition = getComputedStyle(ship).getPropertyValue('left');
-    if(leftPosition === "540px"){
+    let leftPosition = getComputedStyle(ship).getPropertyValue('width');
+    if(leftPosition === "0px"){
         return
     } else {
         let position = parseInt(leftPosition);
-        position += 30;
-        ship.style.left = `${position}px`;
+        position -= 30;
+        ship.style.width = `${position}px`;
     }
 }
 
@@ -69,11 +70,11 @@ function moveLeft() {
         return
     } else {
         let position = parseInt(leftPosition);
-        position -= 30;
+        position += 30;
         ship.style.left = `${position}px`;
     }
 }
-*/
+
 //FIRE
 function fireLaser() {
     let laser = createLaserElement();
@@ -102,6 +103,7 @@ function moveLaser(laser) {
                 alien.src = 'image/smallExplosion.png';
                 alien.classList.remove('alien');
                 alien.classList.add('dead-alien');
+                score ++;
             }
         })
 
@@ -175,6 +177,7 @@ function playGame() {
     }, 2000);
 }
 
+
 //GAME OVER
 function gameOver() {
     window.removeEventListener('keydown', flyShip);
@@ -184,7 +187,7 @@ function gameOver() {
     let lasers = document.querySelectorAll('.laser');
     lasers.forEach((laser) => laser.remove());
     setTimeout(() => {
-        alert('You Lose!\nBetter Luck Next Time!');
+        alert(`You Lose!\nBetter Luck Next Time!\n Your Score:${score}`);
         ship.style.top = "250px";
         startButton.style.display = "block";
         instructionsText.style.display = "block";
