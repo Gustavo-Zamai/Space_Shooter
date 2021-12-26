@@ -50,20 +50,20 @@ function moveDown() {
         ship.style.top = `${position}px`;
     }
 }
-
-//go RIGHT
-function moveRight() {
-    let leftPosition = getComputedStyle(ship).getPropertyValue('width');
+/*
+//GO RIGHT
+function moveLeft() {
+    let leftPosition = getComputedStyle(ship).getPropertyValue('left');
     if(leftPosition === "0px"){
         return
     } else {
         let position = parseInt(leftPosition);
         position -= 30;
-        ship.style.width = `${position}px`;
+        ship.style.left = `${position}px`;
     }
-}
+}*/
 
-//go LEFT
+//GO RIGHT, I DONT KNOW WHY
 function moveLeft() {
     let leftPosition = getComputedStyle(ship).getPropertyValue('left');
     if(leftPosition === "0px"){
